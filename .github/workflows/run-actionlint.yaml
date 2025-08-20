@@ -1,0 +1,21 @@
+name: Run Lint for GitHub Actions Workflow
+on:
+  push:
+    branches:
+      - feature/*
+      - main
+    paths:
+      - .github/workflows/*
+
+jobs:
+  actionlint:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      - name: Set up mise
+        uses: jdx/mise-action@7a111ead46986ccad89a74ad013ba2a7c08c9e67
+
+      - name: Run actionlint
+        run: actionlint
